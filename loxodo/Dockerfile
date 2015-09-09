@@ -1,5 +1,7 @@
 # Before building download the loxodo code and put this Dockerfile in it, https://github.com/sommer/loxodo
 # also `touch requirements.txt`
+#
+# There are some known issues wit this image, most notably related to locale but it works.
 FROM python:2-onbuild
 RUN apt-get update
 RUN apt-get install -y python-wxgtk3.0 python-wxtools locales
