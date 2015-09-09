@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# For running gui docker containers, this is dangerous on anything but a machine I completely control
+xhost local:
+
+docker run --name loxodo --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v ~/gdrive/Records:/Records loxodo
