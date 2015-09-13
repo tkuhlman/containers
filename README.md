@@ -3,3 +3,5 @@ Primarily these are containers I use for organizational purposes, to avoid insta
 dependencies in my primary system.
 
 The bin directory includes the simple scripts I use to run these after they are created.
+
+More information is found in this [blog post](http://backgroundprocess.com/systems/desktop_docker/).
