@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# For running gui docker containers, this is dangerous on anything but a machine I completely control
+xhost local:
+
+exec docker run --name quassel \
+    --rm \
+    -e DISPLAY=$DISPLAY \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v /home/tim/.config:/home/tim/.config \
+    -v /dev/shm:/dev/shm \
+    -v /etc/machine-id:/etc/machine-id \
+    -v /run/user/1000/pulse:/run/user/1000/pulse \
+    -v /var/lib/dbus:/var/lib/dbus \
+    -v ~/.pulse:/root/.pulse \
+    quassel
