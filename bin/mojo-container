@@ -1,0 +1,10 @@
+#!/bin/sh
+# running privileged is necessary for lxc within a docker container.
+
+exec docker run \
+  --name mojo \
+  --rm \
+  -v ~/src:/src \
+  -t -i \
+  --privileged=true \
+  mojo
