@@ -10,4 +10,5 @@ exec docker run \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
   -v /media:/media \
   -v /home/tim/.moneydance:/home/tim/.moneydance \
+  -d \
   moneydance

@@ -1,12 +1,33 @@
 #!/bin/sh
+# Start or restart the pycharm container. I can have multiple long running containers with various
+# python deps are installed in them
+
+if [ $# -ne 1 ]; then
+  container_name='pycharm'
+else
+  container_name=$1
+fi
+
+exited_containers=$(docker ps -a --filter "status=exited" --format "{{.Names}}")
+
+found='false'
+for name in $exited_containers; do
+  if [ $name = $container_name ]; then
+    found='true'
+  fi
+done
 
 # For running gui docker containers, this is dangerous on anything but a machine I completely control
 xhost local:
 
-exec docker run \
-  --name pycharm \
-  --rm \
-  -e DISPLAY=$DISPLAY \
-  -v /tmp/.X11-unix:/tmp/.X11-unix \
-  -v /home/tim/:/home/tim/ \
-  pycharm
+if [ $found = 'true' ]; then
+  exec docker start $container_name
+else
+  exec docker run \
+    --name $container_name \
+    -e DISPLAY=$DISPLAY \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v /home/tim/:/home/tim/ \
+    -d \
+    pycharm
+fi
