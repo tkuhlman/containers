@@ -1,10 +1,15 @@
 #!/bin/sh
-# running privileged is necessary for lxc within a docker container.
+# Mojo must be run containerless, ie run project-new with '-c containerless'
+# Juju must be bootstrapped to a remote environment
+# I may need to setup a ssh agent and a key depending on where mojo is pulling the sources.
 
 exec docker run \
   --name mojo \
   --rm \
-  -v ~/src:/src \
+  -v ~/src:/home/tim/src:ro \
+  -v ~/.juju:/home/tim/.juju \
+  -v ~/.canonistack:/home/tim/.canonistack:ro \
+  -v ~/.bazaar:/home/tim/.bazaar:ro \
+  -v ~/.ssh:/home/tim/.ssh:ro \
   -t -i \
-  --privileged=true \
   mojo
