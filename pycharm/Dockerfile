@@ -1,7 +1,7 @@
-FROM ubuntu:15.04
+FROM ubuntu:15.10
 
 RUN apt-get update
-RUN apt-get install -y wget openjdk-8-jre
+RUN apt-get install -y wget openjdk-8-jre sudo
 WORKDIR /opt
 RUN wget http://download.jetbrains.com/python/pycharm-community-4.5.4.tar.gz
 RUN tar -xzf pycharm-community-4.5.4.tar.gz
@@ -14,6 +14,8 @@ RUN export uid=1000 gid=1000 user=tim && \
     echo "${user}:x:${uid}:" >> /etc/group && \
     mkdir -p /home/${user} && \
     chown ${uid}:${gid} -R /home/${user}
+
+RUN echo "tim    ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/tim
 
 USER tim
 ENV HOME /home/tim
