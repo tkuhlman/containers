@@ -16,7 +16,6 @@ exec docker run --name minecraft \
     -v /var/lib/dbus:/var/lib/dbus \
     -v ~/.pulse:/root/.pulse \
     --device /dev/dri/card0:/dev/dri/card0 \
-    -d \
     minecraft
 
 # To share a world use it is easier to switch networking
