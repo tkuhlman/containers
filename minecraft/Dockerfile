@@ -1,6 +1,7 @@
-FROM ubuntu:15.10
+FROM ubuntu:15.04
 
 RUN apt-get update
+ENV DEBCONF_FRONTEND="noninteractive"
 RUN apt-get install -y mesa-utils xserver-xorg-video-all x11-xserver-utils openjdk-8-jre wget
 
 RUN wget https://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar
