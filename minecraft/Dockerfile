@@ -1,4 +1,4 @@
-FROM ubuntu:15.04
+FROM ubuntu:15.10
 
 RUN apt-get update
 RUN apt-get install -y mesa-utils xserver-xorg-video-all x11-xserver-utils openjdk-8-jre wget
