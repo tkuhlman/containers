@@ -5,6 +5,7 @@ ENV DEBIAN_FRONTEND="noninteractive"
 RUN apt-get install -y mesa-utils xserver-xorg-video-all x11-xserver-utils openjdk-8-jre wget
 
 RUN wget https://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar
+RUN update-ca-certificates -f
 
 # Set the user, uid, gid appropriately
 RUN export uid=1000 gid=1000 user=tim && \
