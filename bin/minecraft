@@ -5,7 +5,7 @@ xhost local:
 
 # The device shared will be machine specific, you can tell if all is good by running `glxinfo | grep render` then
 # looking for errors and comparing to the host
-exec docker run --name minecraft \
+exec docker run --name minecraft -h minecraft \
     --rm \
     -e DISPLAY=$DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \

@@ -4,7 +4,7 @@
 # I may need to setup a ssh agent and a key depending on where mojo is pulling the sources.
 
 exec docker run \
-  --name mojo \
+  --name mojo -h mojo \
   --rm \
   -v ~/src:/home/tim/src:ro \
   -v ~/.juju:/home/tim/.juju \

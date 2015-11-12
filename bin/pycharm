@@ -24,7 +24,7 @@ if [ $found = 'true' ]; then
   exec docker start $container_name
 else
   exec docker run \
-    --name $container_name \
+    --name $container_name -h $container_name \
     -e DISPLAY=$DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -v /home/tim/:/home/tim/ \
