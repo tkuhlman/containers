@@ -2,7 +2,7 @@ FROM ubuntu:15.10
 
 RUN apt-get update
 ENV DEBIAN_FRONTEND="noninteractive"
-RUN apt-get install -y mesa-utils xserver-xorg-video-all x11-xserver-utils openjdk-8-jre wget
+RUN apt-get install -y mesa-utils xserver-xorg-video-all x11-xserver-utils openjdk-8-jre wget pulseaudio libgl1-mesa-dri
 
 RUN wget https://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar
 RUN update-ca-certificates -f
@@ -13,6 +13,8 @@ RUN export uid=1000 gid=1000 user=tim && \
     echo "${user}:x:${uid}:" >> /etc/group && \
     mkdir -p /home/${user} && \
     chown ${uid}:${gid} -R /home/${user}
+
+RUN gpasswd -a tim video
 
 USER tim
 ENV HOME /home/tim
