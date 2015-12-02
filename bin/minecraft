@@ -3,8 +3,7 @@
 # For running gui docker containers, this is dangerous on anything but a machine I completely control
 xhost local:
 
-# The device shared will be machine specific, you can tell if all is good by running `glxinfo | grep render` then
-# looking for errors and comparing to the host
+# Some of the device info here may be machine specific
 exec docker run --name minecraft -h minecraft \
     --rm \
     -e DISPLAY=$DISPLAY \
@@ -16,7 +15,8 @@ exec docker run --name minecraft -h minecraft \
     -v /var/lib/dbus:/var/lib/dbus \
     -v /home/tim/.pulse:/home/tim/.pulse \
     --device /dev/dri/card0:/dev/dri/card0 \
-    minecraft
+    minecraft \
+    /bin/sh -c 'PULSE_SERVER=/var/run/user/1000/pulse/native java -jar Minecraft.jar'
 
 # To share a world use it is easier to switch networking
 # --net=host \

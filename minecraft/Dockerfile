@@ -15,6 +15,7 @@ RUN export uid=1000 gid=1000 user=tim && \
     chown ${uid}:${gid} -R /home/${user}
 
 RUN gpasswd -a tim video
+RUN gpasswd -a tim audio
 
 USER tim
 ENV HOME /home/tim
