@@ -1,7 +1,7 @@
 FROM ubuntu:15.10
 
 RUN apt-get update
-RUN apt-get install -y wget openjdk-8-jre sudo python2.7 ca-certificates python-wheel python-nose python-pip
+RUN apt-get install -y wget openjdk-8-jre sudo python2.7 ca-certificates python-wheel python-nose python-pip git
 WORKDIR /opt
 RUN wget http://download.jetbrains.com/python/pycharm-community-4.5.4.tar.gz
 RUN tar -xzf pycharm-community-4.5.4.tar.gz
