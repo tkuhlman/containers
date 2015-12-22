@@ -9,9 +9,9 @@
 #name=mojo-$(date +%Y-%m-%d)  # Useful if you are testing multiple versions.
 name=mojo
 
-lxc launch trusty $name -c security.nesting=true
-# privileged works but is obviously isn't preferred
-#lxc launch trusty mojo -c security.privileged=true -c security.nesting=true
+lxc launch trusty mojo -c security.privileged=true -c security.nesting=true
+# unprivileged works but requires manual creation of the lxc environment and is only practical for non-local juju environments
+#lxc launch trusty $name -c security.nesting=true
 sleep 5  # Takes a moment for the network
 
 # Pre-req install
@@ -31,7 +31,8 @@ lxc exec $name -- su ubuntu -c 'juju switch local'
 lxc exec $name -- su ubuntu -c 'juju bootstrap'
 
 # Setup test scripts
-lxc file push mojo-integration-test.sh $name/home/ubuntu/mojo-itegration-test.sh
+lxc file push mojo-integration-test.sh $name/home/ubuntu/mojo-integration-test.sh
+lxc exec $name -- chmod +x /home/ubuntu/mojo-integration-test.sh
 
 echo "Now run a shell with 'lxc exec $name -- su - ubuntu'"
 echo "Then you can branch mojo install it and run integration tests, or branch a new spec to test."
