@@ -40,5 +40,5 @@ mojo workspace-new ${MOJO_SPEC} ${MOJO_PROJECT}
 mojo run
 
 if [ $? -eq 0 ]; then
-  sudo -E mojo project-destroy $MOJO_PROJECT
+  sudo -E mojo project-destroy ${MOJO_PROJECT}
 fi

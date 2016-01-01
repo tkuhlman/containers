@@ -30,3 +30,19 @@ of the mojo code you would like to test as an argument and it will put it throug
 
 The container is built with the release Mojo in it. You can leverage this to test specs in an environment
 that is repeatable and easy to automate.
+
+# HowTo
+
+## Build a Image
+LXD must be installed on your host system then simply run `build_mojo_lxd.sh`. After this is completed
+you can use this image directly but I recommend publishing it as a LXD image first to avoid rebuilding.
+Publishing is done with `lxc publish mojo --alias mojo`.
+
+## Starting a Container
+To start a container from an image can be done with the command
+`lxc launch mojo mojo-tests -c security.privileged=true -c security.nesting=true`
+
+Once the image is running you can connect to it with `lxc exec mojo-tests -- su - ubuntu` and run any
+of the helper script found in the ubuntu users home dir.
+
+Also note if you just built a fresh image it is already running just connect to it with the above command.
