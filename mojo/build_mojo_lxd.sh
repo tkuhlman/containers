@@ -10,7 +10,9 @@
 name=mojo
 
 lxc launch trusty mojo -c security.privileged=true -c security.nesting=true
-# unprivileged works but requires manual creation of the lxc environment and is only practical for non-local juju environments
+# unprivileged works but requires manual creation of the lxc environment and is only practical for
+# non-local juju environments, even then it is difficult to setup the lxc env for mojo
+# lxd in lxd works well unprivileged so hopefully mojo and juju will switch to lxd.
 #lxc launch trusty $name -c security.nesting=true
 sleep 5  # Takes a moment for the network
 
@@ -31,8 +33,12 @@ lxc exec $name -- su ubuntu -c 'juju switch local'
 lxc exec $name -- su ubuntu -c 'juju bootstrap'
 
 # Setup test scripts
-lxc file push mojo-integration-test.sh $name/home/ubuntu/mojo-integration-test.sh
-lxc exec $name -- chmod +x /home/ubuntu/mojo-integration-test.sh
+lxc file push mojo-integration-test $name/home/ubuntu/mojo-integration-test
+lxc exec $name -- chmod +x /home/ubuntu/mojo-integration-test
+
+# Add readme
+lxc file push README.md $name/home/ubuntu/README.md
 
 echo "Now run a shell with 'lxc exec $name -- su - ubuntu'"
 echo "Then you can branch mojo install it and run integration tests, or branch a new spec to test."
+echo "Refer to README.md in the container for more information"
