@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/bash -x
 #
 # Run a set of integration tests with the currently installed mojo
 set -e
 
-mkdir $1
-cd $1
+mkdir $2
+cd $2
 bzr branch $1 mojo
 cd mojo/debian
 debuild --no-tgz-check -sa -I.bzr -us -uc
@@ -35,8 +35,8 @@ export MOJO_WORKSPACE=$MOJO_PROJECT
 
 ## TODO: Make this into a function or its own script. Even better pull in something like mojengles here.
 sudo mojo -r ${MOJO_ROOT} project-new --series ${MOJO_SERIES} ${MOJO_PROJECT}
-#sudo chmod 755 /var/lib/lxc/${MOJO_PROJECT}.${MOJO_SERIES} && sudo chmod 755 /var/lib/lxc  # Unprivileged containers only
-ln -s /var/lib/lxc/${MOJO_PROJECT}.${MOJO_SERIES}/rootfs ${MOJO_ROOT}/${MOJO_PROJECT}/${MOJO_SERIES}/ROOTFS
+sudo chmod 755 /var/lib/lxc/${MOJO_PROJECT}.${MOJO_SERIES} && sudo chmod 755 /var/lib/lxc
+sudo ln -s /var/lib/lxc/${MOJO_PROJECT}.${MOJO_SERIES}/rootfs ${MOJO_ROOT}/${MOJO_PROJECT}/${MOJO_SERIES}/ROOTFS
 mojo workspace-new ${MOJO_SPEC} ${MOJO_PROJECT}
 mojo run
 
