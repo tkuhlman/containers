@@ -7,11 +7,10 @@ mkdir $2
 cd $2
 bzr branch $1 mojo
 cd mojo/debian
-debuild --no-tgz-check -sa -I.bzr -us -uc
+debuild --no-tgz-check -d -sa -I.bzr -us -uc
 sudo dpkg -i ../../mojo*.deb
 
 ## Mojo how to spec test
-sudo apt-get install -y python-swiftclient
 export MOJO_SERIES=trusty
 export MOJO_PROJECT=mojo-how-to
 export MOJO_ROOT=/home/ubuntu/
@@ -40,4 +39,6 @@ sudo ln -s /var/lib/lxc/${MOJO_PROJECT}.${MOJO_SERIES}/rootfs ${MOJO_ROOT}/${MOJ
 mojo workspace-new ${MOJO_SPEC} ${MOJO_PROJECT}
 mojo run
 
-mojo project-destroy $MOJO_PROJECT
+if [ $? -eq 0 ]; then
+  sudo -E mojo project-destroy $MOJO_PROJECT
+fi

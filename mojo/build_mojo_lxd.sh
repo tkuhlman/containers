@@ -24,7 +24,8 @@ lxc exec $name -- apt-add-repository -y ppa:mojo-maintainers/ppa
 lxc exec $name -- apt-add-repository -y ppa:ubuntu-lxc/daily
 lxc exec $name -- apt-get update
 lxc exec $name -- apt-get dist-upgrade -y
-lxc exec $name -- apt-get install -y mojo bzr juju-local devscripts debhelper python-all
+# python swiftclient is needed for the mojo-how-to spec most others are build deps
+lxc exec $name -- apt-get install -y mojo bzr juju-local devscripts debhelper python-all python-setuptools python-swiftclient
 
 #juju bootstrap
 lxc file push ubuntu.sudoers $name/etc/sudoers.d/ubuntu
