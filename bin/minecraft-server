@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# A minecraft server running on port 25565 data at /home/tim/.minecraft/server
+# Using the image from https://hub.docker.com/r/itzg/minecraft-server/
+
+sudo ufw allow 25565/tcp
+function ufwcleanup {
+  sudo ufw delete allow 25565/tcp
+}
+trap ufwcleanup EXIT
+
+docker run --rm -p 25565:25565 --name minecraft-server -e EULA=TRUE -v /home/tim/.minecraft/server:/data itzg/minecraft-server
+
+
