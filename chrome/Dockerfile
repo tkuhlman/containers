@@ -1,4 +1,4 @@
-FROM ubuntu:15.04
+FROM ubuntu:15.10
 
 RUN apt-get update
 ADD https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb /google-talkplugin_current_amd64.deb
