@@ -24,12 +24,12 @@ for name in $exited_containers; do
 done
 
 if [ $found = 'true' ]; then
-  exec docker start $container_name
+  exec docker start -i $container_name
 else
   exec docker run \
     --name $container_name -h $container_name \
     -v /home/tim/src:/home/ubuntu/src \
-    -v /home/tim/working/charms:/home/ubuntu/charms \
+    -v /home/tim/working/charms/layers:/home/ubuntu/layers \
     -t -i \
     jujusolutions/charmbox
 fi
