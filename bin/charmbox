@@ -31,6 +31,7 @@ else
     -v /home/tim/src:/home/ubuntu/src \
     -v $JUJU_REPOSITORY/layers:/home/ubuntu/layers \
     -v $JUJU_REPOSITORY/trusty:/home/ubuntu/trusty \
+    -v /home/tim/.canonistack:/home/ubuntu/.canonistack:ro \
     -t -i \
     jujusolutions/charmbox
 fi
