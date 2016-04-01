@@ -27,7 +27,9 @@ else
     --name $container_name -h $container_name \
     -e DISPLAY=$DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
-    -v /home/tim/:/home/tim/ \
+    -v /home/tim/src:/home/tim/src \
+    -v /home/tim/.PyCharm2016.1:/home/tim/.PyCharm2016.1 \
+    -v /home/tim/.java:/home/tim/.java \
     -d \
     pycharm
 fi
