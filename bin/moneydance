@@ -1,8 +1,4 @@
 #!/bin/sh
-
-# For running gui docker containers, this is dangerous on anything but a machine I completely control
-xhost local:
-
 exec docker run \
   --name moneydance -h moneydance \
   --rm \

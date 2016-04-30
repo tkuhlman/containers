@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# For running gui docker containers, this is dangerous on anything but a machine I completely control
-xhost local:
-
 # Some of the device info here may be machine specific
 exec docker run --name minecraft -h minecraft \
     --rm \
