@@ -1,6 +1,6 @@
-FROM ubuntu:15.10
+FROM ubuntu:16.04
 
-ENV VERSION=2016.1
+ENV VERSION=2016.1.2
 
 RUN apt-get update
 RUN apt-get install -y wget openjdk-8-jre sudo python2.7 ca-certificates python-wheel python-nose python-nose-cov python-pip git
