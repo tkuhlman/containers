@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 ENV VERSION=2016.1.2
 
 RUN apt-get update
-RUN apt-get install -y wget openjdk-8-jre sudo python2.7 ca-certificates python-wheel python-nose python-nose-cov python-pip git
+RUN apt-get install -y wget openjdk-8-jre sudo python ca-certificates python-wheel python-nose python-nose-cov python-pip git python3-setuptools
 WORKDIR /opt
 RUN wget http://download.jetbrains.com/python/pycharm-community-${VERSION}.tar.gz
 RUN tar -xzf pycharm-community-${VERSION}.tar.gz
