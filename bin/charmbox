@@ -34,6 +34,7 @@ else
     -v /home/tim/.go:/home/ubuntu/.go \
     -v $JUJU_REPOSITORY/layers:/home/ubuntu/layers \
     -v $JUJU_REPOSITORY/trusty:/home/ubuntu/trusty \
+    -v $JUJU_REPOSITORY/xenial:/home/ubuntu/xenial \
     -v /home/tim/.canonistack:/home/ubuntu/.canonistack:ro \
     -t -i $extra_args \
     jujusolutions/charmbox
