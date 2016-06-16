@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# Starts up a container serving documentation using allmark, https://github.com/andreaskoch/allmark
+# Expects single argument, the directory to serve
+
+if [ $# -ne 1 ]; then
+  echo "Usage $0 <dir_to_server>"
+  exit 1
+fi
+
+container_name=allmark-$(basename $1)
+
+# todo handle symbolic links, if they are in the path I need to mount as a volume the common path
+# Resolve full path
+cd $1
+serve_dir=$(pwd)
+cd - > /dev/null
+
+exec docker run \
+  --name $container_name -h $container_name \
+  -v $serve_dir:$serve_dir:ro \
+  --rm \
+  allmark \
+  bash -c "cd $serve_dir && echo -n 'Serving at ' && hostname -i && echo 'On port 33001' && exec /allmark serve -livereload"
+  # oddly if i subshell hostname -i it doesn't work right
