@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-ENV VERSION=2016.1.3
+ENV VERSION=2016.2.1
 
 RUN apt-get update
 RUN apt-get install -y wget openjdk-8-jre sudo python ca-certificates python-wheel python-nose python-nose-cov python-pip git python3-setuptools bzr python-mock
