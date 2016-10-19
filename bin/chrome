@@ -8,6 +8,6 @@ exec docker run --name chrome -h chrome \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     --device /dev/dri/card0:/dev/dri/card0 \
     -v ~/.config/pulse/cookie:/run/pulse/cookie \
-    -e PULSE_SERVER=tcp:$(ifconfig docker0| awk '/inet addr/{print substr($2,6)}'):4713 \
+    -e PULSE_SERVER=tcp:$(ip addr show dev docker0| awk '/inet /{split($2, s, "/"); print s[1]}'):4713 \
     -e PULSE_COOKIE=/run/pulse/cookie \
     chrome
