@@ -31,7 +31,8 @@ else
   exec docker run \
     --name $container_name -h $container_name \
     -v /home/tim/src:/home/ubuntu/src \
-    -v /home/tim/.go:/home/ubuntu/.go \
+    -v /home/tim/.go-cookies:/home/ubuntu/.go-cookies \
+    -v /home/tim/.local/share/juju:/home/ubuntu/.local/share/juju \
     -v $JUJU_REPOSITORY/layers:/home/ubuntu/layers \
     -v $JUJU_REPOSITORY/trusty:/home/ubuntu/trusty \
     -v $JUJU_REPOSITORY/xenial:/home/ubuntu/xenial \
