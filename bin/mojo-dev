@@ -1,0 +1,38 @@
+#!/bin/sh
+# Start or restart the mojo-dev container.
+
+if [ $# -ne 1 ]; then
+  container_name='mojo-dev'
+  style='--rm'  # Make it emphermal if unnamed
+else
+  container_name=$1
+  style='-d'
+fi
+
+exited_containers=$(docker ps -a --filter "status=exited" --format "{{.Names}}")
+
+found='false'
+for name in $exited_containers; do
+  if [ $name = $container_name ]; then
+    found='true'
+  fi
+done
+
+echo "Note: setfacl is not supported by AUFS and consequently by docker when using that backend."
+
+if [ $found = 'true' ]; then
+  exec docker start $container_name
+else
+  exec docker run \
+    --name $container_name -h $container_name \
+    -e DISPLAY=$DISPLAY \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v /home/tim/src:/home/tim/src \
+    -v /home/tim/.PyCharm2016.2:/home/tim/.PyCharm2016.2 \
+    -v /home/tim/.java:/home/tim/.java \
+    -v /home/tim/.local/share/juju:/home/tim/.local/share/juju \
+    -v /home/tim/.config/lxc:/home/tim/.config/lxc \
+    -v /var/lib/lxd:/var/lib/lxd \
+    $style \
+    mojo-dev
+fi
