@@ -1,0 +1,18 @@
+#!/bin/sh
+# Start or restart the charmtest container.
+
+container_name='charmtest'
+
+echo "Typical test usage: 'cd charms/xenial/charm_name; bundletester'"
+echo "For testing it will use the currently active Juju model."
+echo "Typical charm building: 'cd src/charms/charm_name; charm build -s xenial'"
+
+exec docker run \
+  --name $container_name -h $container_name \
+  -v /home/tim/src:/home/tim/src \
+  -v /home/tim/working/charms:/home/tim/charms \
+  -v /home/tim/.local/share/juju:/home/tim/.local/share/juju \
+  -v /home/tim/.config/lxc:/home/tim/.config/lxc \
+  -v /var/lib/lxd:/var/lib/lxd \
+  -t -i --rm \
+  $container_name bash
