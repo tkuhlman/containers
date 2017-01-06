@@ -6,6 +6,7 @@ container_name='charmtest'
 echo "Typical test usage: 'cd charms/xenial/charm_name; bundletester'"
 echo "For testing it will use the currently active Juju model."
 echo "Typical charm building: 'cd src/charms/charm_name; charm build -s xenial'"
+echo "TODO: Investigate setting JUJU_REPOSITORY so charms are built in the right place."
 
 exec docker run \
   --name $container_name -h $container_name \
