@@ -3,9 +3,16 @@
 # Run [jpetazzo/squid-in-a-can](https://github.com/jpetazzo/squid-in-a-can) as a transparent http proxy
 # on this machine. This should speed up apt for other containers and the host.
 
-sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to 3129 -w
+# The Redirect command is probably more correct but for some reason that only works for my lxd containers
+# not for my docker containers. Easier then figuring out what ufw and docker are doing is to use the
+# below dnat rule.
+#sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to 3129 -w
+sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to 10.47.34.1:3129 -w
+
 function iptablescleanup {
-  sudo iptables -t nat -D PREROUTING -p tcp --dport 80 -j REDIRECT --to 3129 -w
+  #sudo iptables -t nat -D PREROUTING -p tcp --dport 80 -j REDIRECT --to 3129 -w
+  sudo iptables -t nat -D PREROUTING -p tcp --dport 80 -j DNAT --to 10.47.34.1:3129 -w
+
 }
 trap iptablescleanup EXIT
 
