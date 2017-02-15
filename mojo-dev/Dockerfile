@@ -11,7 +11,7 @@ RUN apt-get install -y software-properties-common
 RUN apt-add-repository -y ppa:mojo-maintainers/ppa
 RUN apt-get update
 RUN apt-get dist-upgrade -y
-RUN apt-get install -y mojo bzr juju-2.0 devscripts debhelper python-all python-setuptools python-swiftclient python-nose python-coverage python-mock python-argcomplete python-juju-deployer python-pylxd
+RUN apt-get install -y mojo bzr juju-2.0 devscripts debhelper python-all python-setuptools python-swiftclient python-nose python-coverage python-mock python-argcomplete python-juju-deployer python-pylxd python-ws4py
 
 RUN gpasswd -a tim lxd
 
