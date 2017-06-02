@@ -1,6 +1,6 @@
-FROM ubuntu:16.04
+FROM ubuntu:17.04
 
-ENV VERSION=2016.2.3
+ENV VERSION=2017.1.3
 
 RUN apt-get update
 RUN apt-get install -y wget openjdk-8-jre sudo python ca-certificates python-wheel python-nose python-nose-cov python-pip git python3-setuptools bzr python-mock

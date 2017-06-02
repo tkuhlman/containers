@@ -27,7 +27,7 @@ else
     -e DISPLAY=$DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -v /home/tim/src:/home/tim/src \
-    -v /home/tim/.PyCharm2016.2:/home/tim/.PyCharm2016.2 \
+    -v /home/tim/.PyCharmCE2017.1:/home/tim/.PyCharmCE2017.1 \
     -v /home/tim/.java:/home/tim/.java \
     $style \
     pycharm
