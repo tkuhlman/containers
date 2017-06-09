@@ -3,7 +3,7 @@ FROM ubuntu:17.04
 ENV VERSION=2017.1.3
 
 RUN apt-get update
-RUN apt-get install -y wget openjdk-8-jre sudo python ca-certificates python-wheel python-nose python-nose-cov python-pip git python3-setuptools bzr python-mock
+RUN apt-get install -y wget openjdk-8-jre sudo python3 ca-certificates python3-wheel python3-nose python3-nose-cov python3-pip git python3-setuptools bzr python3-mock tox
 WORKDIR /opt
 RUN wget http://download.jetbrains.com/python/pycharm-community-${VERSION}.tar.gz
 RUN tar -xzf pycharm-community-${VERSION}.tar.gz
